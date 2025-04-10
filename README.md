@@ -27,3 +27,4 @@ You can develop this extension entirely in GitHub Codespaces without local setup
 1. Click "Code" > "Open with Codespaces"
 2. Create new codespace
 3. The environment will be pre-configured
+4. sk-826aeab3486b48c4a8284164b041f225
