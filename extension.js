@@ -7,7 +7,7 @@ const axios = require('axios');
 // Configuration for the LLM API
 const LLM_CONFIG = {
     API_ENDPOINT: 'https://api.deepseek.com/v1/chat/completions',
-    API_KEY: 'YOUR_API_KEY_HERE', 
+    API_KEY: 'DEEPSEEK_API', 
     DEFAULT_MAX_TOKENS: 150, 
     DEFAULT_TEMPERATURE: 0.7 
 };
