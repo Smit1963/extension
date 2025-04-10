@@ -27,5 +27,7 @@ You can develop this extension entirely in GitHub Codespaces without local setup
 1. Click "Code" > "Open with Codespaces"
 2. Create new codespace
 3. The environment will be pre-configured
-4. sk-826aeab3486b48c4a8284164b041f225
-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
+
+deepseek api- sk-826aeab3486b48c4a8284164b041f225
+github token- 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
+Azure PAT- 1D0nVsygp0VrROk0eo4WVc6RlYX4iC8AGN6VWeWxpZFMocRAxT3NJQQJ99BDACAAAAAAAAAAAAASAZDONA2Z
