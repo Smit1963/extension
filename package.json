@@ -3,6 +3,13 @@
   "displayName": "VsPilot",
   "description": "A VSCode extension that integrates a coding assistant LLM",
   "version": "0.0.1",
+  "publisher": "Smit Patel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Smit1963/extension"
+  },
+  "license": "MIT",
+  "keywords": ["AI", "LLM", "DeepSeek", "coding-assistant"],
   "engines": {
     "vscode": "^1.75.0"
   },
