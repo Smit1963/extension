@@ -1,5 +1,5 @@
 {
-  "name": "Vs-llm-assiatnt",
+  "name": "vspilot",
   "displayName": "VsPilot",
   "description": "A VSCode extension that integrates a coding assistant LLM",
   "version": "0.0.1",
