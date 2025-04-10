@@ -1,25 +1,49 @@
 const vscode = require('vscode');
 const axios = require('axios');
 
+const vscode = require('vscode');
+const axios = require('axios');
+
+// Configuration for the LLM API
+const LLM_CONFIG = {
+    API_ENDPOINT: 'https://api.deepseek.com/v1/chat/completions', // DeepSeek API endpoint
+    API_KEY: 'YOUR_API_KEY_HERE', // ← REPLACE THIS WITH YOUR ACTUAL API KEY
+    DEFAULT_MAX_TOKENS: 150, // Controls response length
+    DEFAULT_TEMPERATURE: 0.7 // Controls creativity (0-1)
+};
+
 async function callLLMAssistant(prompt) {
     try {
-        // Replace with your LLM API endpoint (DeepSeek, OpenAI, etc.)
-        const response = await axios.post('https://api.deepseek.com/v1/chat/completions', {
-            prompt: prompt,
-            max_tokens: 150
-        }, {
-            headers: {
-                'Authorization': `Bearer YOUR_API_KEY`,
-                'Content-Type': 'application/json'
+        const response = await axios.post(
+            LLM_CONFIG.API_ENDPOINT,
+            {
+                model: "deepseek-chat", // Specify the model you're using
+                messages: [
+                    {
+                        role: "user",
+                        content: prompt
+                    }
+                ],
+                max_tokens: LLM_CONFIG.DEFAULT_MAX_TOKENS,
+                temperature: LLM_CONFIG.DEFAULT_TEMPERATURE
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${LLM_CONFIG.API_KEY}`,
+                    'Content-Type': 'application/json'
+                }
             }
-        });
-        return response.data.choices[0].text.trim();
+        );
+        
+        // Extract the response content (adjust based on your API's response structure)
+        return response.data.choices[0].message.content.trim();
     } catch (error) {
         console.error('Error calling LLM API:', error);
-        return "Sorry, I couldn't process your request.";
+        return "Sorry, I couldn't process your request. Error: " + error.message;
     }
 }
 
+// Rest of the extension code remains the same...
 function activate(context) {
     let disposable = vscode.commands.registerCommand('llm-assistant.ask', async function () {
         const editor = vscode.window.activeTextEditor;
