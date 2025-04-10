@@ -6,7 +6,7 @@ This extension integrates a coding assistant LLM (like DeepSeek) directly into V
 
 - Ask coding questions directly from the editor
 - Get AI-powered code suggestions
-- Works with selected code as context
+- Works with selected code as context.
 
 
 
