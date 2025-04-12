@@ -1,22 +1,26 @@
 {
   "name": "vspilot",
   "displayName": "VsPilot",
-  "description": "A VSCode extension that integrates a coding assistant LLM",
+  "description": "AI-powered coding assistant with DeepSeek LLM integration",
   "version": "0.0.1",
-  "publisher": "Smit Patel",
+  "publisher": "SmitPatel",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Smit1963/extension"
+    "url": "https://github.com/Smit1963/vspilot-extension"
   },
   "license": "MIT",
-  "keywords": ["AI", "LLM", "DeepSeek", "coding-assistant"],
+  "keywords": [
+    "AI",
+    "LLM",
+    "coding-assistant",
+    "productivity"
+  ],
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages",
-    "Snippets",
-    "Other"
+    "Productivity"
   ],
   "activationEvents": [
     "onCommand:llm-assistant.ask"
@@ -26,16 +30,43 @@
     "commands": [
       {
         "command": "llm-assistant.ask",
-        "title": "Ask LLM Assistant"
+        "title": "Ask LLM Assistant",
+        "category": "AI Assistant"
       }
     ],
     "keybindings": [
       {
         "command": "llm-assistant.ask",
         "key": "ctrl+alt+l",
-        "mac": "cmd+alt+l"
+        "mac": "cmd+alt+l",
+        "when": "editorTextFocus"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "VsPilot",
+      "properties": {
+        "vspilot.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your DeepSeek API key",
+          "scope": "application"
+        },
+        "vspilot.maxTokens": {
+          "type": "number",
+          "default": 150,
+          "description": "Maximum number of tokens to generate",
+          "scope": "application"
+        },
+        "vspilot.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Controls randomness (0 = deterministic, 1 = most creative)",
+          "scope": "application"
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
