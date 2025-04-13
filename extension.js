@@ -6,9 +6,9 @@ function getConfig() {
     const config = vscode.workspace.getConfiguration('vspilot');
     return {
         API_ENDPOINT: 'https://api.deepseek.com/v1/chat/completions',
-        API_KEY: config.get('apiKey') || '',
-        MAX_TOKENS: config.get('maxTokens') || 150,
-        TEMPERATURE: config.get('temperature') || 0.7
+        API_KEY: config.get('vspilot.apiKey') || '',
+        MAX_TOKENS: config.get('vspilot.maxTokens') || 150,
+        TEMPERATURE: config.get('vspilot.temperature') || 0.7
     };
 }
 
@@ -50,7 +50,7 @@ async function callLLMAssistant(prompt) {
 }
 
 function activate(context) {
-    let disposable = vscode.commands.registerCommand('llm-assistant.ask', async function () {
+    let disposable = vscode.commands.registerCommand('vspilot.ask', async function () {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showErrorMessage('No active editor found!');
