@@ -15,38 +15,31 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.activate = activate;
-exports.deactivate = deactivate;
+exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const axios_1 = __importDefault(require("axios"));
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
+// Removed 'some-module' import as it is not used in the code
+const apiKey = process.env.VSPILOT_API_KEY || vscode.workspace.getConfiguration('vspilot').get('apiKey');
 function activate(context) {
     // Get configuration from VS Code settings
     function getConfig() {
         const config = vscode.workspace.getConfiguration('vspilot');
         return {
             apiProvider: config.get('apiProvider') || 'huggingface',
-            apiKey: config.get('apiKey') || '',
+            apiKey: apiKey || '',
             maxTokens: config.get('maxTokens') || 150,
             temperature: config.get('temperature') || 0.7,
             ollamaModel: config.get('ollamaModel') || 'codellama'
@@ -214,14 +207,21 @@ function activate(context) {
             }
         }
     }));
-    // Show welcome message
-    context.subscriptions.push({
-        dispose: () => vscode.window.showInformationMessage('VsPilot activated! Use Ctrl+Alt+L to ask questions or Ctrl+Alt+K for direct code insertion.', 'Open Settings').then(choice => {
-            if (choice === 'Open Settings') {
-                vscode.commands.executeCommand('workbench.action.openSettings', 'vspilot');
-            }
-        })
-    });
+    // Show welcome message with a proper disposable object
+    const disposableMessage = {
+        dispose: () => {
+            vscode.window.showInformationMessage('VsPilot activated! Use Ctrl+Alt+L to ask questions or Ctrl+Alt+K for direct code insertion.', 'Open Settings').then(choice => {
+                if (choice === 'Open Settings') {
+                    vscode.commands.executeCommand('workbench.action.openSettings', 'vspilot');
+                }
+            });
+        }
+    };
+    // Add the disposable object to the context subscriptions
+    context.subscriptions.push(disposableMessage);
 }
+exports.activate = activate;
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 function deactivate() { }
+exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map
