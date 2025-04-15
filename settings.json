@@ -1,5 +1,5 @@
 {
-  "vspilot.apiKey": "your-api-key-here",
+  "vspilot.apiKey": "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",
   "vspilot.apiProvider": "huggingface", // or "deepseek" or "ollama"
   "vspilot.maxTokens": 150,
   "vspilot.temperature": 0.7,
