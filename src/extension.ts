@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import someModule from 'some-module'; // Updated to use ES module import
+// Removed 'some-module' import as it is not used in the code
 
 const apiKey = process.env.VSPILOT_API_KEY || vscode.workspace.getConfiguration('vspilot').get<string>('apiKey');
 
