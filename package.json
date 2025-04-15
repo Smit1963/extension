@@ -24,6 +24,10 @@
     "Other"
   ],
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:extension.activate",
+    "onStartupFinished"
+  ],
   "contributes": {
     "commands": [
       {
@@ -35,6 +39,10 @@
         "command": "vspilot.insert",
         "title": "Insert Code Suggestion",
         "category": "AI Assistant"
+      },
+      {
+        "command": "extension.activate",
+        "title": "Activate VsPilot"
       }
     ],
     "keybindings": [
@@ -106,13 +114,13 @@
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^16.11.7",
-    "@types/vscode": "^1.99.1",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.77.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "@vscode/test-electron": "^2.5.2",
-    "eslint": "^8.57.1",
-    "typescript": "^4.9.5",
+    "eslint": "^8.0.0",
+    "typescript": "^4.9.0",
     "vscode": "^1.1.37"
   }
 }
