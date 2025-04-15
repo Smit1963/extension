@@ -17,7 +17,7 @@
     "free"
   ],
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.77.0"
   },
   "categories": [
     "Programming Languages",
@@ -25,7 +25,6 @@
   ],
   "main": "./out/extension.js",
   "activationEvents": [
-    "onCommand:extension.activate",
     "onStartupFinished"
   ],
   "contributes": {
@@ -104,7 +103,8 @@
   },
   "scripts": {
     "compile": "tsc -p ./",
-    "lint": "eslint . --ext .ts,.js"
+    "lint": "eslint . --ext .ts,.js",
+    "bundle": "esbuild src/extension.ts --bundle --outdir=out --platform=node --external:vscode"
   },
   "dependencies": {
     "axios": "^1.8.4",
@@ -119,6 +119,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.2",
     "eslint": "^8.0.0",
     "typescript": "^4.9.0",
     "vscode": "^1.1.37"
