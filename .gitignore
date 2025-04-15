@@ -1,1 +1,21 @@
+# Exclude node_modules except production dependencies
+node_modules/**
+
+# Exclude test files
+src/test/**
+
+# Exclude TypeScript source files (only include compiled JavaScript)
+src/**/*.ts
+
+# Exclude compiled source maps
+out/**/*.js.map
+
+# Exclude environment files
 .env
+
+# Exclude other unnecessary files
+.vscode/
+.vscode-test/
+.git/
+.gitignore
+package-lock.json
