@@ -3,6 +3,9 @@ import axios, { AxiosError } from 'axios';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const someModule = require('some-module');
+
 const apiKey = process.env.VSPILOT_API_KEY || vscode.workspace.getConfiguration('vspilot').get<string>('apiKey');
 
 type ApiProvider = 'huggingface' | 'deepseek' | 'ollama';
@@ -249,4 +252,5 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposableMessage);
 }
 
-export function deactivate() {}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function deactivate(): void {}
