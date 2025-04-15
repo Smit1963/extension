@@ -1,0 +1,119 @@
+{
+  "name": "vspilot",
+  "displayName": "VsPilot",
+  "description": "AI-powered coding assistant with free LLM integration",
+  "version": "0.0.2",
+  "publisher": "SmitPatel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Smit1963/extension"
+  },
+  "license": "MIT",
+  "keywords": [
+    "AI",
+    "LLM",
+    "coding-assistant",
+    "productivity",
+    "free"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vspilot.ask",
+        "title": "Ask LLM Assistant",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "vspilot.insert",
+        "title": "Insert Code Suggestion",
+        "category": "AI Assistant"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vspilot.ask",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vspilot.insert",
+        "key": "ctrl+alt+k",
+        "mac": "cmd+alt+k",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "VsPilot",
+      "properties": {
+        "vspilot.apiProvider": {
+          "type": "string",
+          "enum": [
+            "huggingface",
+            "deepseek",
+            "ollama"
+          ],
+          "default": "huggingface",
+          "description": "Select which API provider to use",
+          "scope": "application"
+        },
+        "vspilot.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key (if required by provider)",
+          "scope": "application"
+        },
+        "vspilot.maxTokens": {
+          "type": "number",
+          "default": 150,
+          "description": "Maximum number of tokens to generate",
+          "scope": "application"
+        },
+        "vspilot.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Controls randomness (0 = deterministic, 1 = most creative)",
+          "scope": "application"
+        },
+        "vspilot.ollamaModel": {
+          "type": "string",
+          "default": "codellama",
+          "description": "Model name when using Ollama",
+          "scope": "application"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint . --ext .ts,.js",
+    "test": "node ./out/test/runTest.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.99.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.1",
+    "typescript": "^4.9.5",
+    "vscode": "^1.1.37"
+  }
+}
