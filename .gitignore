@@ -19,3 +19,4 @@ out/**/*.js.map
 .git/
 .gitignore
 package-lock.json
+settings.json
