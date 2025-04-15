@@ -3,8 +3,7 @@ import axios, { AxiosError } from 'axios';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const someModule = require('some-module');
+import someModule from 'some-module'; // Updated to use ES module import
 
 const apiKey = process.env.VSPILOT_API_KEY || vscode.workspace.getConfiguration('vspilot').get<string>('apiKey');
 
